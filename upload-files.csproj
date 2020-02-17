@@ -3,7 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>upload_files</RootNamespace>
+    <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+ 
   </PropertyGroup>
+
+  <ItemGroup>
+   
+  </ItemGroup>
 
 
 

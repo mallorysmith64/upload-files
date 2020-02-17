@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -8,18 +9,19 @@ namespace upload_files.Controllers
     public class HomeController : Controller
     {
         private Microsoft.AspNetCore.Hosting.IWebHostEnvironment _env;
-        private string _dir;
+        string _incoming;
         public HomeController(Microsoft.AspNetCore.Hosting.IWebHostEnvironment env)
         {
             _env = env;
-            _dir = _env.ContentRootPath;
+            _incoming = Environment.GetEnvironmentVariable("INCOMING_DIR");
         }
         public IActionResult Index() => View();
 
         public IActionResult SingleFile(IFormFile file)
         {
-            using (var fileStream = new FileStream(Path.Combine(_dir,"file.png"), FileMode.Create, FileAccess.Write))
+            string ts = DateTime.Now.ToString("yyyyMMddHHmmssFFF"); // case sensitive
 
+            using (var fileStream = new FileStream(Path.Combine(_incoming, $"incoming-{ts}.xml"), FileMode.Create, FileAccess.Write))
         {
             file.CopyTo(fileStream);
         }
@@ -27,15 +29,15 @@ namespace upload_files.Controllers
         }
     public IActionResult MultipleFiles(IEnumerable<IFormFile> files)
     {
-        int i = 0;
-        foreach (var file in files)
-        {
-            using (var fileStream = new FileStream(Path.Combine(_dir, $"file{i++}.png"), FileMode.Create, FileAccess.Write))
+            foreach (var file in files)
             {
-                file.CopyTo(fileStream);
+                string ts = DateTime.Now.ToString("yyyyMMddHHmmssFFF"); // case sensitive
+                using (var fileStream = new FileStream(Path.Combine(_incoming, $"incoming-{ts}.xml"), FileMode.Create, FileAccess.Write))
+                {
+                    file.CopyTo(fileStream);
+                }
             }
-        }
-        return RedirectToAction("Index");
+            return RedirectToAction("Index");
         }    
     }
 }

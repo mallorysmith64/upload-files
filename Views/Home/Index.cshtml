@@ -3,8 +3,12 @@
 }
 
 <section class="text-center">
+    show status of previous upload
+</section>
+
+<section class="text-center">
     <h4> Single File Upload </h4>
-    <form asp-controllers="Home" asp-actions="SingleFile" enctype="multipart/form-data" method="post">
+    <form asp-controller="Home" asp-action="SingleFile" enctype="multipart/form-data" method="post">
     <input type="file" name="file"/>
     <button type="submit">Submit</button>
     </form>
@@ -12,7 +16,7 @@
 
 <section class="text-center">
     <h4> Multiple File Uploads </h4>
-    <form asp-controllers="Home" asp-actions="SingleFile" enctype="multipart/form-data" method="post">
+    <form asp-controller="Home" asp-action="MultipleFiles" enctype="multipart/form-data" method="post">
     <input type="file" name="files" multiple/>
     <button type="submit">Submit</button>
     </form>
