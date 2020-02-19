@@ -27,18 +27,3 @@ namespace upload_files.Controllers
         }
     }
 }
-//     public IActionResult MultipleFiles(IEnumerable<IFormFile> files)
-//     {
-//             int i = 0;
-//             foreach (var file in files)
-//             {
-//                 var dir = _env.ContentRootPath;
-//                 using (var fileStream = new FileStream(Path.Combine(dir, $"file{i++}.png"), FileMode.Create, FileAccess.Write))
-//                 {
-//                     file.CopyTo(fileStream);
-//                 }
-//             }
-//             return RedirectToAction("Index");
-//         }    
-//     }
-// }
