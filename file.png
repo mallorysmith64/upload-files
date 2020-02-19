@@ -1,7 +1,0 @@
-<Customer>
-	<FirstName>Joe</FirstName>
-	<LastName>Stevens</LastName>
-	<City>Tampa</City>
-	<State>FL</State>
-	<Phone>1234567891</Phone>
-</Customer>
